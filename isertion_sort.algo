@@ -1,0 +1,56 @@
+FUNCTION read_length(VAR n:INTEGER) : INTEGER
+VAR
+    
+BEGIN
+    REPEAT
+        WRITE("saisir longeur du tableau");
+        read(n);
+    UNTIL (n<=0);
+    RETURN n ;
+END
+
+PROCEDURE remplir_vect(VAR vect1: ARRAY_OF INTEGER ,VAR vect2: ARRAY_OF INTEGER,n:INTEGER)
+VAR
+    i:INTEGER:=0
+BEGIN
+    FOR i FROM 0 TO n-1   DO
+        read(vect1[i]);
+        read(vect2[i]);
+    END_FOR
+END
+
+PROCEDURE insertion_Sort(var tab: ARRAY_OF INTEGER, n: INTEGER)
+VAR
+    i, key, j: INTEGER;
+    BEGIN
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        key := tab[i]; 
+        j := i - 1;
+        WHILE (j >= 0 && tab[j] > key) DO
+            tab[j + 1] := tab[j]; 
+            j := j - 1;
+        END_WHILE
+tab[j + 1] := key; 
+    END_FOR
+END
+
+PROCEDURE Afficher_vect(tab: ARRAY_OF INTEGER ,n:INTEGER)
+VAR
+    i:INTEGER:=0
+BEGIN
+    FOR i FROM 0 TO n-1   DO
+        write(tab[i]);
+    END_FOR
+END
+
+ALGORITHM algorithm_name
+VAR
+    n: INTEGER;
+    TAB : ARRAY_OF INTEGER[50];
+BEGIN
+n:=read_length();
+remplir_vect(TAB,n);
+insertion_Sort(TAB, n);
+Afficher_vect(TAB ,n);
+
+END
